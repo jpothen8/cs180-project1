@@ -48,12 +48,12 @@
       Additional examples
      </a>
      <a href="#failure">
-      Alignment failure
+      Emir comparison
      </a>
     </nav>
    </header>
    <section id="overview">
-    <div class="description">
+    <div class="description" id="text-introduction">
      <!-- Write your introduction here. -->
     </div>
     <p>
@@ -67,8 +67,159 @@
     <p class="settings">
      NCC and L2 · search ±15 pixels · scoring border 15%
     </p>
-    <div class="description">
+    <div class="description" id="text-single">
      <!-- Write your single-scale method here. -->
+    </div>
+    <div class="metrics">
+     <p class="math-key">
+      A and B are the reference and shifted patches over the same interior pixels Ω. μ
+      <sub>
+       A
+      </sub>
+      and μ
+      <sub>
+       B
+      </sub>
+      are their means; N is the number of pixels.
+     </p>
+     <div class="formula-grid">
+      <article class="metric-card">
+       <h3>
+        L2 distance
+       </h3>
+       <div aria-label="L2 of A and B equals the square root of the sum over pixels p in Omega of A p minus B p squared." class="equation" role="math">
+        <span>
+         L2(A, B) =
+        </span>
+        <span class="sqrt">
+         <span class="radical">
+          √
+         </span>
+         <span class="radicand">
+          <span class="sum">
+           ∑
+           <sub>
+            p∈Ω
+           </sub>
+          </span>
+          (A
+          <sub>
+           p
+          </sub>
+          − B
+          <sub>
+           p
+          </sub>
+          )
+          <sup>
+           2
+          </sup>
+         </span>
+        </span>
+       </div>
+       <p class="score-note">
+        Minimize L2. Code score: −L2²/N (maximize).
+       </p>
+       <div class="description" id="text-l2">
+        <!-- Write your L2 explanation here. -->
+       </div>
+      </article>
+      <article class="metric-card">
+       <h3>
+        Normalized cross-correlation
+       </h3>
+       <div aria-label="NCC of A and B equals the sum of A p minus mean A times B p minus mean B, divided by the product of their mean-centered L2 norms. All sums run over p in Omega." class="equation" role="math">
+        <span>
+         NCC(A, B) =
+        </span>
+        <span class="fraction">
+         <span class="numerator">
+          <span class="sum">
+           ∑
+           <sub>
+            p∈Ω
+           </sub>
+          </span>
+          (A
+          <sub>
+           p
+          </sub>
+          − μ
+          <sub>
+           A
+          </sub>
+          )(B
+          <sub>
+           p
+          </sub>
+          − μ
+          <sub>
+           B
+          </sub>
+          )
+         </span>
+         <span class="denominator">
+          <span class="sqrt">
+           <span class="radical">
+            √
+           </span>
+           <span class="radicand">
+            <span class="sum">
+             ∑
+             <sub>
+              p∈Ω
+             </sub>
+            </span>
+            (A
+            <sub>
+             p
+            </sub>
+            − μ
+            <sub>
+             A
+            </sub>
+            )
+            <sup>
+             2
+            </sup>
+           </span>
+          </span>
+          <span class="sqrt">
+           <span class="radical">
+            √
+           </span>
+           <span class="radicand">
+            <span class="sum">
+             ∑
+             <sub>
+              p∈Ω
+             </sub>
+            </span>
+            (B
+            <sub>
+             p
+            </sub>
+            − μ
+            <sub>
+             B
+            </sub>
+            )
+            <sup>
+             2
+            </sup>
+           </span>
+          </span>
+         </span>
+        </span>
+       </div>
+       <p class="score-note">
+        Maximize NCC.
+       </p>
+       <div class="description" id="text-ncc">
+        <!-- Write your NCC explanation here. -->
+       </div>
+      </article>
+     </div>
     </div>
     <div class="low-gallery">
      <article class="low-example">
@@ -149,9 +300,15 @@
     <p class="settings">
      Raw-pixel NCC · coarsest side ≤200 pixels · coarse search ±15 · refinement ±2
     </p>
-    <div class="description">
+    <div class="description" id="text-pyramid">
      <!-- Write your pyramid method here. -->
     </div>
+    <figure class="pyramid-diagram">
+     <img alt="Six pyramid levels for Melons. Build from the full-resolution 3770 by 3241 image up to 118 by 102 by blurring and halving each dimension. Search plus or minus 15 pixels at the coarsest level, then double the estimated shift and search plus or minus 2 pixels at each finer level. Repeat separately for green and red relative to blue." height="560" src="diagrams/pyramid.svg" width="1000"/>
+     <figcaption>
+      Melons pyramid. Level shapes are schematic; labels show actual dimensions.
+     </figcaption>
+    </figure>
     <div class="table-wrap">
      <table>
       <caption>
@@ -310,7 +467,7 @@
        All measured offsets (CSV)
       </a>
      </p>
-     <div class="description">
+     <div class="description" id="text-results">
       <!-- Write your pyramid results here. -->
      </div>
      <div class="gallery" id="gallery">
@@ -548,7 +705,7 @@
     <p class="settings">
      Original Library of Congress TIFFs · raw-pixel NCC
     </p>
-    <div class="description">
+    <div class="description" id="text-extra-intro">
      <!-- Write your additional examples here. -->
     </div>
     <article class="extra-example">
@@ -576,7 +733,7 @@
       G (5, 32)  
           R (8, 79)
      </p>
-     <div class="description">
+     <div class="description" id="text-mosque">
       <!-- Write your Yusuf Hamadani mosque observations here. -->
      </div>
     </article>
@@ -605,7 +762,7 @@
       G (-5, 25)  
           R (-11, 102)
      </p>
-     <div class="description">
+     <div class="description" id="text-river">
       <!-- Write your Suna River observations here. -->
      </div>
     </article>
@@ -634,34 +791,150 @@
       G (31, 38)  
           R (-165, 294)
      </p>
-     <div class="description">
+     <div class="description" id="text-locomotive">
       <!-- Write your Locomotive observations here. -->
      </div>
     </article>
    </section>
    <section id="failure">
     <h2>
-     Alignment failure: Emir
+     Emir: comparing alignment strategies
     </h2>
-    <div class="description">
-     <!-- Write your explanation of the Emir alignment failure here. -->
+    <p class="settings">
+     Red via green: R→B = R→G + G→B. All four examples use a 15% scoring border and a coarsest side of 200 px.
+    </p>
+    <div class="description" id="text-emir">
+     <!-- Write your Emir experiment explanation here. -->
     </div>
-    <article class="failure-result" id="failure-emir">
-     <figure class="">
+    <div class="comparison-grid">
+     <figure>
       <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
-       <img alt="Emir: Emir" height="1318" loading="eager" src="images/pyramid/emir.jpg" width="1500"/>
+       <img alt="Emir: NCC · red to blue" height="1318" src="images/pyramid/emir.jpg" width="1500"/>
       </a>
       <figcaption>
-       Emir
+       NCC · red to blue
+       <br/>
+       G (24, 49)   R (-482, 400)
       </figcaption>
      </figure>
-     <p class="offset">
-      G (24, 49)   R (-482, 400)
-     </p>
-     <p class="meta">
-      3,702 × 3,209 pixels per channel
-     </p>
-    </article>
+     <figure>
+      <a class="image-link" href="images/pyramid-l2/emir.jpg" rel="noopener" target="_blank">
+       <img alt="Emir: L2 · red to blue" height="1289" src="images/pyramid-l2/emir.jpg" width="1500"/>
+      </a>
+      <figcaption>
+       L2 · red to blue
+       <br/>
+       G (24, 49)   R (44, 66)
+      </figcaption>
+     </figure>
+     <figure>
+      <a class="image-link" href="images/pyramid-via-green/emir.jpg" rel="noopener" target="_blank">
+       <img alt="Emir: NCC · red to green" height="1271" src="images/pyramid-via-green/emir.jpg" width="1500"/>
+      </a>
+      <figcaption>
+       NCC · red to green
+       <br/>
+       G (24, 49)   R (41, 106)
+      </figcaption>
+     </figure>
+     <figure>
+      <a class="image-link" href="images/pyramid-l2-via-green/emir.jpg" rel="noopener" target="_blank">
+       <img alt="Emir: L2 · red to green" height="1271" src="images/pyramid-l2-via-green/emir.jpg" width="1500"/>
+      </a>
+      <figcaption>
+       L2 · red to green
+       <br/>
+       G (24, 49)   R (41, 106)
+      </figcaption>
+     </figure>
+    </div>
+    <div class="table-wrap">
+     <table>
+      <caption>
+       Applied offsets (x, y), relative to blue
+      </caption>
+      <thead>
+       <tr>
+        <th>
+         Metric
+        </th>
+        <th>
+         Red reference
+        </th>
+        <th>
+         Green
+        </th>
+        <th>
+         Red
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <th>
+         NCC
+        </th>
+        <td>
+         blue
+        </td>
+        <td>
+         (24, 49)
+        </td>
+        <td>
+         (-482, 400)
+        </td>
+       </tr>
+       <tr>
+        <th>
+         L2
+        </th>
+        <td>
+         blue
+        </td>
+        <td>
+         (24, 49)
+        </td>
+        <td>
+         (44, 66)
+        </td>
+       </tr>
+       <tr>
+        <th>
+         NCC
+        </th>
+        <td>
+         green
+        </td>
+        <td>
+         (24, 49)
+        </td>
+        <td>
+         (41, 106)
+        </td>
+       </tr>
+       <tr>
+        <th>
+         L2
+        </th>
+        <td>
+         green
+        </td>
+        <td>
+         (24, 49)
+        </td>
+        <td>
+         (41, 106)
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <p class="settings">
+     <a href="emir-trials.csv">
+      All 36 trials (CSV)
+     </a>
+     : NCC/L2 × 200/400/800 px coarsest side × 10/15/25% border × blue/green reference.
+    </p>
    </section>
    <footer>
     <p>
