@@ -35,7 +35,7 @@
 <div class="formula"><span>L2(A, B) = √Σ(Aᵢ − Bᵢ)²</span><span>NCC(A, B) = Σ[(Aᵢ − μ<sub>A</sub>)(Bᵢ − μ<sub>B</sub>)] / √[Σ(Aᵢ − μ<sub>A</sub>)² Σ(Bᵢ − μ<sub>B</sub>)²]</span></div>
 <p>NCC is less sensitive to an overall change in brightness or contrast between channels. It still assumes that the pattern of bright and dark regions is similar. That assumption becomes a problem when a strongly colored object has very different intensities through different filters.</p>
 <p>The search uses nested loops over translations and NumPy array operations over pixels. Every candidate uses the same reference rectangle, with enough margin to prevent wrapped pixels from contributing to the score. NCC and L2 selected the same offsets on all three JPEGs.</p></div>
-<article class="low-example">
+<div class="low-gallery"><article class="low-example">
           <h3>Cathedral</h3><div class="pair">
           <figure class="">
           <a class="image-link" href="images/single-ncc/cathedral.jpg" target="_blank" rel="noopener">
@@ -71,7 +71,7 @@
           <img src="images/single-l2/tobolsk.jpg" width="393" height="335"
             alt="Tobolsk: L2: G (3, 3); R (3, 6)" loading="eager"></a>
           <figcaption>L2: G (3, 3); R (3, 6)</figcaption></figure>
-          </div></article>
+          </div></article></div>
 </section>
 <section id="pyramid"><div class="section-head"><p class="kicker">02 / Multi-scale alignment</p><h2>Start small, refine at full resolution</h2></div>
 <div class="prose"><p>A shift of 100 pixels is outside the JPEG search window. Expanding that window directly on a large TIFF would require scoring many more translations, each over millions of pixels. The pyramid makes those large shifts small enough to search at a reduced resolution.</p>
@@ -265,7 +265,7 @@
 <div class="table-wrap"><table><caption>Emir: feature comparison</caption><thead><tr><th>Features</th><th>Green (x, y)</th><th>Red (x, y)</th></tr></thead><tbody>
 <tr><th>Raw intensities</th><td>(24, 49)</td><td>(-482, 400)</td></tr>
 <tr><th>Gradient magnitude</th><td>(24, 49)</td><td>(40, 107)</td></tr></tbody></table></div>
-<div class="prose"><h3>Automatic contrast</h3><p>I also apply a shared linear intensity stretch. The 1st and 99th percentiles are estimated across all RGB values in the interior, excluding the outer 10% so the scanned frame has less influence. Those two values are mapped to 0 and 1, and values outside the range are clipped. Using one mapping for all channels avoids independently rescaling the colors.</p>
+<div class="contrast-section"><div class="prose"><h3>Automatic contrast</h3><p>I also apply a shared linear intensity stretch. The 1st and 99th percentiles are estimated across all RGB values in the interior, excluding the outer 10% so the scanned frame has less influence. Those two values are mapped to 0 and 1, and values outside the range are clipped. Using one mapping for all channels avoids independently rescaling the colors.</p>
 <p>The comparison below keeps the edge-based alignment fixed. This adjustment can make detail easier to see, but it can also clip highlights and shadows. It does not estimate white balance or recover the original colors of the scene.</p></div>
 <div class="pair"><figure class="">
           <a class="image-link" href="images/edges/harvesters.jpg" target="_blank" rel="noopener">
@@ -275,7 +275,7 @@
           <a class="image-link" href="images/contrast/harvesters.jpg" target="_blank" rel="noopener">
           <img src="images/contrast/harvesters.jpg" width="1500" height="1266"
             alt="Harvesters: After the shared percentile stretch" loading="eager"></a>
-          <figcaption>After the shared percentile stretch</figcaption></figure></div>
+          <figcaption>After the shared percentile stretch</figcaption></figure></div></div>
 </section>
 <section id="discussion"><div class="section-head"><p class="kicker">06 / Discussion</p><h2>What the translations can fix</h2></div>
 <div class="prose"><p>The main failure of the raw-intensity baseline is Emir, where the red-channel estimate is affected by the different brightness of the clothing across filters. Edge features improve that match. The required raw-pixel result remains visible above so that the effect of the feature change can be compared directly.</p>
