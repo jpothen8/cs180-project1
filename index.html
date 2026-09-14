@@ -47,6 +47,9 @@
      <a href="#extra">
       Additional examples
      </a>
+     <a href="#failure">
+      Alignment failure
+     </a>
     </nav>
    </header>
    <section id="overview">
@@ -141,7 +144,7 @@
    </section>
    <section id="pyramid">
     <h2>
-     Image pyramid
+     Multi-scale alignment
     </h2>
     <p class="settings">
      Raw-pixel NCC · coarsest side ≤200 pixels · coarse search ±15 · refinement ±2
@@ -297,245 +300,245 @@
       </figcaption>
      </figure>
     </div>
-   </section>
-   <section id="results">
-    <h2>
-     Supplied images
-    </h2>
-    <p class="settings">
-     Raw-pixel NCC ·
-     <a href="offsets.csv">
-      All measured offsets (CSV)
-     </a>
-    </p>
-    <div class="description">
-     <!-- Write your baseline results and alignment failures here. -->
-    </div>
-    <div class="gallery" id="gallery">
-     <article class="result-card" id="result-cathedral">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/cathedral.jpg" rel="noopener" target="_blank">
-        <img alt="Cathedral: Cathedral" height="329" loading="eager" src="images/pyramid/cathedral.jpg" width="387"/>
-       </a>
-       <figcaption>
-        Cathedral
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (2, 5)   R (3, 12)
-      </p>
-      <p class="meta">
-       390 × 341 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-church">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/church.jpg" rel="noopener" target="_blank">
-        <img alt="Church: Church" height="1301" loading="eager" src="images/pyramid/church.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Church
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (4, 25)   R (-4, 58)
-      </p>
-      <p class="meta">
-       3,634 × 3,202 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-emir">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
-        <img alt="Emir: Emir" height="1318" loading="eager" src="images/pyramid/emir.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Emir
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (24, 49)   R (-482, 400)
-      </p>
-      <p class="meta">
-       3,702 × 3,209 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-harvesters">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/harvesters.jpg" rel="noopener" target="_blank">
-        <img alt="Harvesters: Harvesters" height="1266" loading="eager" src="images/pyramid/harvesters.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Harvesters
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (17, 60)   R (14, 124)
-      </p>
-      <p class="meta">
-       3,683 × 3,218 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-icon">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/icon.jpg" rel="noopener" target="_blank">
-        <img alt="Icon: Icon" height="1273" loading="eager" src="images/pyramid/icon.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Icon
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (17, 41)   R (23, 89)
-      </p>
-      <p class="meta">
-       3,741 × 3,244 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-ilemselga">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/ilemselga.jpg" rel="noopener" target="_blank">
-        <img alt="Ilemselga: Ilemselga" height="1243" loading="eager" src="images/pyramid/ilemselga.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Ilemselga
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (7, 40)   R (11, 130)
-      </p>
-      <p class="meta">
-       3,800 × 3,270 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-melons">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/melons.jpg" rel="noopener" target="_blank">
-        <img alt="Melons: Melons" height="1223" loading="eager" src="images/pyramid/melons.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Melons
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (10, 81)   R (14, 178)
-      </p>
-      <p class="meta">
-       3,770 × 3,241 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-monastery">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/monastery.jpg" rel="noopener" target="_blank">
-        <img alt="Monastery: Monastery" height="335" loading="eager" src="images/pyramid/monastery.jpg" width="389"/>
-       </a>
-       <figcaption>
-        Monastery
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (2, -3)   R (2, 3)
-      </p>
-      <p class="meta">
-       391 × 341 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-religous_painting">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/religous_painting.jpg" rel="noopener" target="_blank">
-        <img alt="Religious painting: Religious painting" height="1255" loading="eager" src="images/pyramid/religous_painting.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Religious painting
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (3, 28)   R (7, 68)
-      </p>
-      <p class="meta">
-       3,742 × 3,193 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-self_portrait">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/self_portrait.jpg" rel="noopener" target="_blank">
-        <img alt="Self portrait: Self portrait" height="1223" loading="eager" src="images/pyramid/self_portrait.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Self portrait
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (29, 79)   R (37, 176)
-      </p>
-      <p class="meta">
-       3,810 × 3,251 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-siren">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/siren.jpg" rel="noopener" target="_blank">
-        <img alt="Siren: Siren" height="1248" loading="eager" src="images/pyramid/siren.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Siren
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (-6, 49)   R (-25, 96)
-      </p>
-      <p class="meta">
-       3,817 × 3,250 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-three_generations">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/three_generations.jpg" rel="noopener" target="_blank">
-        <img alt="Three generations: Three generations" height="1256" loading="eager" src="images/pyramid/three_generations.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Three generations
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (14, 52)   R (11, 111)
-      </p>
-      <p class="meta">
-       3,714 × 3,209 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-tobolsk">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/tobolsk.jpg" rel="noopener" target="_blank">
-        <img alt="Tobolsk: Tobolsk" height="335" loading="eager" src="images/pyramid/tobolsk.jpg" width="393"/>
-       </a>
-       <figcaption>
-        Tobolsk
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (3, 3)   R (3, 6)
-      </p>
-      <p class="meta">
-       396 × 341 pixels per channel
-      </p>
-     </article>
-     <article class="result-card" id="result-wharf">
-      <figure class="">
-       <a class="image-link" href="images/pyramid/wharf.jpg" rel="noopener" target="_blank">
-        <img alt="Wharf: Wharf" height="1266" loading="eager" src="images/pyramid/wharf.jpg" width="1500"/>
-       </a>
-       <figcaption>
-        Wharf
-       </figcaption>
-      </figure>
-      <p class="offset">
-       G (-7, 15)   R (-16, 82)
-      </p>
-      <p class="meta">
-       3,761 × 3,244 pixels per channel
-      </p>
-     </article>
+    <div class="pyramid-results" id="results">
+     <h3>
+      Supplied images
+     </h3>
+     <p class="settings">
+      Raw-pixel NCC ·
+      <a href="offsets.csv">
+       All measured offsets (CSV)
+      </a>
+     </p>
+     <div class="description">
+      <!-- Write your pyramid results here. -->
+     </div>
+     <div class="gallery" id="gallery">
+      <article class="result-card" id="result-cathedral">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/cathedral.jpg" rel="noopener" target="_blank">
+         <img alt="Cathedral: Cathedral" height="329" loading="eager" src="images/pyramid/cathedral.jpg" width="387"/>
+        </a>
+        <figcaption>
+         Cathedral
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (2, 5)   R (3, 12)
+       </p>
+       <p class="meta">
+        390 × 341 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-church">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/church.jpg" rel="noopener" target="_blank">
+         <img alt="Church: Church" height="1301" loading="eager" src="images/pyramid/church.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Church
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (4, 25)   R (-4, 58)
+       </p>
+       <p class="meta">
+        3,634 × 3,202 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-emir">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
+         <img alt="Emir: Emir" height="1318" loading="eager" src="images/pyramid/emir.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Emir
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (24, 49)   R (-482, 400)
+       </p>
+       <p class="meta">
+        3,702 × 3,209 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-harvesters">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/harvesters.jpg" rel="noopener" target="_blank">
+         <img alt="Harvesters: Harvesters" height="1266" loading="eager" src="images/pyramid/harvesters.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Harvesters
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (17, 60)   R (14, 124)
+       </p>
+       <p class="meta">
+        3,683 × 3,218 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-icon">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/icon.jpg" rel="noopener" target="_blank">
+         <img alt="Icon: Icon" height="1273" loading="eager" src="images/pyramid/icon.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Icon
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (17, 41)   R (23, 89)
+       </p>
+       <p class="meta">
+        3,741 × 3,244 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-ilemselga">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/ilemselga.jpg" rel="noopener" target="_blank">
+         <img alt="Ilemselga: Ilemselga" height="1243" loading="eager" src="images/pyramid/ilemselga.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Ilemselga
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (7, 40)   R (11, 130)
+       </p>
+       <p class="meta">
+        3,800 × 3,270 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-melons">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/melons.jpg" rel="noopener" target="_blank">
+         <img alt="Melons: Melons" height="1223" loading="eager" src="images/pyramid/melons.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Melons
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (10, 81)   R (14, 178)
+       </p>
+       <p class="meta">
+        3,770 × 3,241 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-monastery">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/monastery.jpg" rel="noopener" target="_blank">
+         <img alt="Monastery: Monastery" height="335" loading="eager" src="images/pyramid/monastery.jpg" width="389"/>
+        </a>
+        <figcaption>
+         Monastery
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (2, -3)   R (2, 3)
+       </p>
+       <p class="meta">
+        391 × 341 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-religous_painting">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/religous_painting.jpg" rel="noopener" target="_blank">
+         <img alt="Religious painting: Religious painting" height="1255" loading="eager" src="images/pyramid/religous_painting.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Religious painting
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (3, 28)   R (7, 68)
+       </p>
+       <p class="meta">
+        3,742 × 3,193 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-self_portrait">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/self_portrait.jpg" rel="noopener" target="_blank">
+         <img alt="Self portrait: Self portrait" height="1223" loading="eager" src="images/pyramid/self_portrait.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Self portrait
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (29, 79)   R (37, 176)
+       </p>
+       <p class="meta">
+        3,810 × 3,251 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-siren">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/siren.jpg" rel="noopener" target="_blank">
+         <img alt="Siren: Siren" height="1248" loading="eager" src="images/pyramid/siren.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Siren
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (-6, 49)   R (-25, 96)
+       </p>
+       <p class="meta">
+        3,817 × 3,250 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-three_generations">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/three_generations.jpg" rel="noopener" target="_blank">
+         <img alt="Three generations: Three generations" height="1256" loading="eager" src="images/pyramid/three_generations.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Three generations
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (14, 52)   R (11, 111)
+       </p>
+       <p class="meta">
+        3,714 × 3,209 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-tobolsk">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/tobolsk.jpg" rel="noopener" target="_blank">
+         <img alt="Tobolsk: Tobolsk" height="335" loading="eager" src="images/pyramid/tobolsk.jpg" width="393"/>
+        </a>
+        <figcaption>
+         Tobolsk
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (3, 3)   R (3, 6)
+       </p>
+       <p class="meta">
+        396 × 341 pixels per channel
+       </p>
+      </article>
+      <article class="result-card" id="result-wharf">
+       <figure class="">
+        <a class="image-link" href="images/pyramid/wharf.jpg" rel="noopener" target="_blank">
+         <img alt="Wharf: Wharf" height="1266" loading="eager" src="images/pyramid/wharf.jpg" width="1500"/>
+        </a>
+        <figcaption>
+         Wharf
+        </figcaption>
+       </figure>
+       <p class="offset">
+        G (-7, 15)   R (-16, 82)
+       </p>
+       <p class="meta">
+        3,761 × 3,244 pixels per channel
+       </p>
+      </article>
+     </div>
     </div>
    </section>
    <section id="extra">
@@ -636,13 +639,29 @@
      </div>
     </article>
    </section>
-   <section id="discussion">
+   <section id="failure">
     <h2>
-     Discussion
+     Alignment failure: Emir
     </h2>
     <div class="description">
-     <!-- Write your discussion here. -->
+     <!-- Write your explanation of the Emir alignment failure here. -->
     </div>
+    <article class="failure-result" id="failure-emir">
+     <figure class="">
+      <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
+       <img alt="Emir: Emir" height="1318" loading="eager" src="images/pyramid/emir.jpg" width="1500"/>
+      </a>
+      <figcaption>
+       Emir
+      </figcaption>
+     </figure>
+     <p class="offset">
+      G (24, 49)   R (-482, 400)
+     </p>
+     <p class="meta">
+      3,702 × 3,209 pixels per channel
+     </p>
+    </article>
    </section>
    <footer>
     <p>
