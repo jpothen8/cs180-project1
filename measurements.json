@@ -1,0 +1,410 @@
+{
+  "cathedral": {
+    "pyramid": {
+      "green_offset_xy": [
+        2,
+        5
+      ],
+      "red_offset_xy": [
+        3,
+        12
+      ],
+      "alignment_seconds": 0.0578
+    },
+    "edges": {
+      "green_offset_xy": [
+        2,
+        5
+      ],
+      "red_offset_xy": [
+        3,
+        12
+      ],
+      "alignment_seconds": 0.0621
+    }
+  },
+  "church": {
+    "pyramid": {
+      "green_offset_xy": [
+        4,
+        25
+      ],
+      "red_offset_xy": [
+        -4,
+        58
+      ],
+      "alignment_seconds": 0.7743
+    },
+    "edges": {
+      "green_offset_xy": [
+        4,
+        25
+      ],
+      "red_offset_xy": [
+        -4,
+        58
+      ],
+      "alignment_seconds": 1.2093
+    }
+  },
+  "emir": {
+    "pyramid": {
+      "green_offset_xy": [
+        24,
+        49
+      ],
+      "red_offset_xy": [
+        -482,
+        400
+      ],
+      "alignment_seconds": 0.7901
+    },
+    "edges": {
+      "green_offset_xy": [
+        24,
+        49
+      ],
+      "red_offset_xy": [
+        40,
+        107
+      ],
+      "alignment_seconds": 1.2621
+    }
+  },
+  "harvesters": {
+    "pyramid": {
+      "green_offset_xy": [
+        17,
+        60
+      ],
+      "red_offset_xy": [
+        14,
+        124
+      ],
+      "alignment_seconds": 0.7849
+    },
+    "edges": {
+      "green_offset_xy": [
+        17,
+        60
+      ],
+      "red_offset_xy": [
+        14,
+        124
+      ],
+      "alignment_seconds": 1.231
+    }
+  },
+  "icon": {
+    "pyramid": {
+      "green_offset_xy": [
+        17,
+        41
+      ],
+      "red_offset_xy": [
+        23,
+        89
+      ],
+      "alignment_seconds": 0.8373
+    },
+    "edges": {
+      "green_offset_xy": [
+        17,
+        42
+      ],
+      "red_offset_xy": [
+        23,
+        90
+      ],
+      "alignment_seconds": 1.3031
+    }
+  },
+  "ilemselga": {
+    "pyramid": {
+      "green_offset_xy": [
+        7,
+        40
+      ],
+      "red_offset_xy": [
+        11,
+        130
+      ],
+      "alignment_seconds": 0.8148
+    },
+    "edges": {
+      "green_offset_xy": [
+        7,
+        40
+      ],
+      "red_offset_xy": [
+        11,
+        131
+      ],
+      "alignment_seconds": 1.2952
+    }
+  },
+  "melons": {
+    "pyramid": {
+      "green_offset_xy": [
+        10,
+        81
+      ],
+      "red_offset_xy": [
+        14,
+        178
+      ],
+      "alignment_seconds": 0.8084
+    },
+    "edges": {
+      "green_offset_xy": [
+        10,
+        80
+      ],
+      "red_offset_xy": [
+        13,
+        177
+      ],
+      "alignment_seconds": 1.2944
+    }
+  },
+  "monastery": {
+    "pyramid": {
+      "green_offset_xy": [
+        2,
+        -3
+      ],
+      "red_offset_xy": [
+        2,
+        3
+      ],
+      "alignment_seconds": 0.0585
+    },
+    "edges": {
+      "green_offset_xy": [
+        2,
+        -3
+      ],
+      "red_offset_xy": [
+        2,
+        3
+      ],
+      "alignment_seconds": 0.0613
+    }
+  },
+  "religous_painting": {
+    "pyramid": {
+      "green_offset_xy": [
+        3,
+        28
+      ],
+      "red_offset_xy": [
+        7,
+        68
+      ],
+      "alignment_seconds": 0.7956
+    },
+    "edges": {
+      "green_offset_xy": [
+        1,
+        30
+      ],
+      "red_offset_xy": [
+        6,
+        70
+      ],
+      "alignment_seconds": 1.2457
+    }
+  },
+  "self_portrait": {
+    "pyramid": {
+      "green_offset_xy": [
+        29,
+        79
+      ],
+      "red_offset_xy": [
+        37,
+        176
+      ],
+      "alignment_seconds": 0.8184
+    },
+    "edges": {
+      "green_offset_xy": [
+        29,
+        78
+      ],
+      "red_offset_xy": [
+        37,
+        176
+      ],
+      "alignment_seconds": 1.3179
+    }
+  },
+  "siren": {
+    "pyramid": {
+      "green_offset_xy": [
+        -6,
+        49
+      ],
+      "red_offset_xy": [
+        -25,
+        96
+      ],
+      "alignment_seconds": 0.8442
+    },
+    "edges": {
+      "green_offset_xy": [
+        -6,
+        49
+      ],
+      "red_offset_xy": [
+        -24,
+        96
+      ],
+      "alignment_seconds": 1.3407
+    }
+  },
+  "three_generations": {
+    "pyramid": {
+      "green_offset_xy": [
+        14,
+        52
+      ],
+      "red_offset_xy": [
+        11,
+        111
+      ],
+      "alignment_seconds": 0.7743
+    },
+    "edges": {
+      "green_offset_xy": [
+        12,
+        53
+      ],
+      "red_offset_xy": [
+        9,
+        111
+      ],
+      "alignment_seconds": 1.2554
+    }
+  },
+  "tobolsk": {
+    "pyramid": {
+      "green_offset_xy": [
+        3,
+        3
+      ],
+      "red_offset_xy": [
+        3,
+        6
+      ],
+      "alignment_seconds": 0.0588
+    },
+    "edges": {
+      "green_offset_xy": [
+        3,
+        3
+      ],
+      "red_offset_xy": [
+        3,
+        6
+      ],
+      "alignment_seconds": 0.0628
+    }
+  },
+  "wharf": {
+    "pyramid": {
+      "green_offset_xy": [
+        -7,
+        15
+      ],
+      "red_offset_xy": [
+        -16,
+        82
+      ],
+      "alignment_seconds": 0.8186
+    },
+    "edges": {
+      "green_offset_xy": [
+        -6,
+        15
+      ],
+      "red_offset_xy": [
+        -16,
+        82
+      ],
+      "alignment_seconds": 1.2896
+    }
+  },
+  "mosque": {
+    "pyramid": {
+      "green_offset_xy": [
+        5,
+        32
+      ],
+      "red_offset_xy": [
+        8,
+        79
+      ],
+      "alignment_seconds": 0.7976
+    },
+    "edges": {
+      "green_offset_xy": [
+        5,
+        32
+      ],
+      "red_offset_xy": [
+        7,
+        79
+      ],
+      "alignment_seconds": 1.2462
+    }
+  },
+  "river": {
+    "pyramid": {
+      "green_offset_xy": [
+        -5,
+        25
+      ],
+      "red_offset_xy": [
+        -11,
+        102
+      ],
+      "alignment_seconds": 0.8345
+    },
+    "edges": {
+      "green_offset_xy": [
+        -5,
+        25
+      ],
+      "red_offset_xy": [
+        -12,
+        102
+      ],
+      "alignment_seconds": 1.2884
+    }
+  },
+  "locomotive": {
+    "pyramid": {
+      "green_offset_xy": [
+        31,
+        38
+      ],
+      "red_offset_xy": [
+        -165,
+        294
+      ],
+      "alignment_seconds": 0.826
+    },
+    "edges": {
+      "green_offset_xy": [
+        31,
+        38
+      ],
+      "red_offset_xy": [
+        -165,
+        293
+      ],
+      "alignment_seconds": 1.3167
+    }
+  }
+}
