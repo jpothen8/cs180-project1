@@ -56,6 +56,7 @@ section { border-top: 1px solid var(--line); margin-top: 54px; padding-top: 30px
 .sum sub { position: absolute; top: 100%; left: -.25em; right: -.25em; text-align: center; font-size: .46em; line-height: 1; margin-top: 2px; }
 .score-note { font-size: 13px; color: var(--muted); margin-top: 12px; }
 .pyramid-diagram { margin: 28px 0; }
+.raw-channels { margin: 28px 0; }
 .pyramid-diagram img { display: block; width: 100%; height: auto; }
 .comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; margin-top: 28px; }
 .image-link { display: block; }
@@ -118,6 +119,7 @@ footer p + p { margin-top: 12px; }
   .equation { overflow: visible; font-size: 14pt; padding: 2mm 0; }
   .score-note { font-size: 8pt; margin-top: 1mm; }
   .pyramid-diagram { break-inside: avoid; margin: 4mm 0; }
+  .raw-channels { break-inside: avoid; margin: 4mm 0; }
   .pyramid-diagram img { max-height: 92mm; object-fit: contain; object-position: left top; }
   #pyramid > .pair img { max-height: 48mm; }
   .comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5mm; margin-top: 4mm; }

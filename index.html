@@ -68,7 +68,7 @@
      NCC and L2 · search ±15 pixels · scoring border 15%
     </p>
     <div class="description" id="text-single">
-     <!-- Write your single-scale method here. -->
+     <p>One, single scaled alignment. Since each scan of the subject contains three grayscale exposures of the same screen under different colored glass panes, the exposures will appear at slightly different positions due to variability in taking the image, and stacking them immediately will cause a lot of visual artifacts in colored outlines or doubled objects. We assume that we can fix these visual artifacts with a translation only, so just moving the entire channel or these images up and down and left and right, and we&#x27;re not doing any rotation. For this project, we&#x27;re using a search from negative 15 to positive 15 pixels, so we can shift each channel by this amount. We also exclude the outer 15% of each channel because the borders can sometimes dominate the comparison without looking at the actual important part, which is the scene.</p>
     </div>
     <div class="metrics">
      <p class="math-key">
@@ -121,8 +121,8 @@
         Minimize L2. Code score: −L2²/N (maximize).
        </p>
        <div class="description" id="text-l2">
-        <!-- Write your L2 explanation here. -->
-       </div>
+     <p>Two, L2 norm. For this strategy, we will take the L2 norm between the images produced by these different color glass panes, and we&#x27;ll try to align the image to minimize the intensity difference across each corresponding pixel between these channels. So essentially, we&#x27;re going to take the brightness in the red channel, the green channel, the blue channel, and then we&#x27;re going to look at the squared difference between them and then try to choose the alignment that will have the lowest overall L2 norm when you add up all of the differences in the pixels across the entire image.</p>
+    </div>
       </article>
       <article class="metric-card">
        <h3>
@@ -216,8 +216,8 @@
         Maximize NCC.
        </p>
        <div class="description" id="text-ncc">
-        <!-- Write your NCC explanation here. -->
-       </div>
+     <p>Three, NCC. With NCC, the main problem we&#x27;re trying to solve is difference in varying brightness levels across these color channels. So essentially, we&#x27;re trying to say, can we try to find a metric that will make sure that the patterns across the color channels are as similar as possible? The benefit of this is that it doesn&#x27;t penalize two color channels for being different just because of their intensity values. For example, if the red channel is the exact same as the green channel in its particular shift, but all of its intensities are doubled, most likely we would want to keep that shift even though the L2 norm will have a high error for that. So how does NCC work? Essentially, we compare the entire cropped image that we are testing against. We will normalize it based on its overall brightness levels when comparing it to another image, and we will compare the relative difference. So for example, let&#x27;s say if we have an array of 10, 20, and 30, and 40, 60, and 80, similar to my example from before, the L2 error will be a lot, but the NCC score will be 1, because after we normalize both these images, we notice that they have the exact same pattern. We start off on a number, and then after demeaning both of these, we get negative 10, 0, 10, and negative 20, 0, 20, respectively, which both share the exact same pattern. Because of this, we get the maximum NCC score, which means strong agreement, and because of this normalization, we know that NCC will range from negative 1 to 1.</p>
+    </div>
       </article>
      </div>
     </div>
@@ -301,7 +301,7 @@
      Raw-pixel NCC · coarsest side ≤200 pixels · coarse search ±15 · refinement ±2
     </p>
     <div class="description" id="text-pyramid">
-     <!-- Write your pyramid method here. -->
+     <p>Four: Pyramid. We run into a problem with this earlier two approaches with larger images because of two reasons. First, we need larger searching areas. We need much more than 15 pixels, and this means that this increases the computational complexity of our searching problem. And then on top of that, our images are also bigger, so finding our loss will also be more computationally expensive. So the core idea is that working with these large images is a pretty big hassle. So what we can do is try to downsample these images into a smaller resolution and then find the best displacement for these downsampled images, and then gradually get back to our original quality, so we can find the exact shift needed for this image. In my project, I create smaller images by applying the kernel [1, 2, 1] divided by 4, both horizontally and vertically, and then keeping every second pixel. Because this is a low-pass filter, it will smooth out fine detail before sampling, and without smoothing, these fine patterns can actually turn into visual artifacts called aliasing. I stop downsampling when the longest side is at most 200 pixels, and we do our first alignment with that lowest resolution image with a plus minus 15 pixel search in that pixel space. And as we go to the larger levels, that search is constrained to only plus or minus 2 pixels in that pixel space. Because, of course, a pixel in a downsampled image corresponds to many more pixels in the original image. It is not truly a constant searching area, even though all the upper levels are plus minus 2 pixels. The main flaw of this algorithm is that an incorrect coarse estimate at the very beginning can lead later searches into the wrong region, and it may never reach the optimal alignment.</p>
     </div>
     <figure class="pyramid-diagram">
      <img alt="Six pyramid levels for Melons. Build from the full-resolution 3770 by 3241 image up to 118 by 102 by blurring and halving each dimension. Search plus or minus 15 pixels at the coarsest level, then double the estimated shift and search plus or minus 2 pixels at each finer level. Repeat separately for green and red relative to blue." height="560" src="diagrams/pyramid.svg" width="1000"/>
@@ -465,8 +465,8 @@
       Raw-pixel NCC
      </p>
      <div class="description" id="text-results">
-      <!-- Write your pyramid results here. -->
-     </div>
+     <p>five results, how to judge the alignment. When looking at the picture, we should look for agreement around the recognizable features, such as building edges, faces, tree trunks, patterns, or anything with a high frequency. Misalignment will produce visible colored fringes or repeated outlines in these areas. The cathedral, monastery, and Tobolos give the same offsets with both single scale metrics. Moreover, the photographic borders is not an error. It is more important to get the scene aligned, and it is intentional that we are ignoring the borders. However, there may be some artifacts that a translation cannot fix, such as subject movement between the different exposures as seen with a few people in the harvesters image.</p>
+    </div>
      <div class="gallery" id="gallery">
       <article class="result-card" id="result-cathedral">
        <figure class="">
@@ -703,7 +703,7 @@
      Original Library of Congress TIFFs · raw-pixel NCC
     </p>
     <div class="description" id="text-extra-intro">
-     <!-- Write your additional examples here. -->
+     <p>Six additional examples, what different scenes reveal. These three images from the Library of Congress show how the algorithms work in different types of scenes with different challenges. The mosque provides an architectural structure with an identifiable boundary, and the river scene also includes broad areas with less textures, but there is a clear boundary between the water and the landscape. But the locomotive example seems to be the hardest image to align visually because of all the repeated lines and outlines in this image. This may be why the locomotive example looks slightly less tuned than the Sundar River and the mosque example, but this is an inherent challenge with the image itself but overall, it does seem to have done a pretty good job.</p>
     </div>
     <article class="extra-example">
      <h3>
@@ -797,11 +797,16 @@
     <h2>
      Emir: comparing alignment strategies
     </h2>
+    <figure class="raw-channels">
+     <a class="image-link" href="images/emir-raw-channels.png" rel="noopener" target="_blank">
+      <img alt="Original unaligned Emir exposures: blue on the left, green in the middle, and red on the right, displayed using the same brightness scaling." height="598" src="images/emir-raw-channels.png" width="1880"/>
+     </a>
+    </figure>
     <p class="settings">
      Red via green: R→B = R→G + G→B. All four examples use a 15% scoring border and a coarsest side of 200 px.
     </p>
     <div class="description" id="text-emir">
-     <!-- Write your Emir experiment explanation here. -->
+     <p>Seven Amir. In all of the above images, with the same settings for NCC reconstruction, we see here that the Amir robe image shows a pretty big limitation of this brightness-based matching. The color filters can record the same garment or background regions with very different intensities, and since Amir is wearing a dark blue robe with many different colored features on it, it is very hard for the intensities between the red, green, and blue channels to agree with each other, even in the correct alignment. So, in order to play around with this problem a little bit more, I tried different parameters for the alignment. So, for example, I explored both the NCC and L2 metric, borders of 10, 15, and 25%, and the pyramid stopping sizes of 200, 400, and 800. However, the best improvement came from using green as the intermediate reference for aligning each color. If we look at each channel, the differences in the robe is kind of intermediate in the green exposure channel, as it is very dark in the red exposure and very bright or intense in the blue exposure. So, before I was comparing the red with the blue channel and the green to the blue channel, but instead of that, I compare red to green and green to blue. So this red to blue difference is computed by adding these two deltas: red to green and green to blue. This heavily increased the accuracy and alignment in the image, likely because of this fact that green is an intermediate intensity in the robe, which is the main feature that will throw off the traditional alignment in this image. And since both NCC and L2 both improved with this change, it suggests that the reference choice of color was actually pretty important here.</p>
     </div>
     <div class="comparison-grid">
      <figure>
