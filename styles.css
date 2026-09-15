@@ -29,6 +29,7 @@ h2 { font-size: 34px; line-height: 1.2; font-weight: 450; letter-spacing: -.02em
 h3 { font-size: 23px; line-height: 1.35; font-weight: 500; }
 .kicker, .byline, .settings, .offset, .meta, figcaption, footer { font-family: var(--mono); }
 .kicker { font-size: 13px; letter-spacing: .1em; color: var(--muted); }
+.project-url { font: 14px/1.7 var(--mono); color: var(--accent); overflow-wrap: anywhere; }
 .byline { font-size: 14px; color: var(--muted); margin-top: 24px; }
 nav { display: flex; gap: 12px 27px; flex-wrap: wrap; font-size: 14px; margin-top: 28px; }
 .pyramid-results { margin-top: 40px; }
