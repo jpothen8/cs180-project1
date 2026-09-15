@@ -1,30 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>
    CS180 Project 1 | John Joseph
   </title>
-  <meta content="CS180 Project 1: Prokudin-Gorskii color reconstructions." name="description"/>
-  <link href="https://jpothen8.github.io/cs180-project1/" rel="canonical"/>
-  <link href="styles.css" rel="stylesheet"/>
- </head>
- <body>
-  <a class="skip" href="#overview">
+<meta content="CS180 Project 1: Prokudin-Gorskii color reconstructions." name="description"/>
+<link href="https://jpothen8.github.io/cs180-project1/" rel="canonical"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip" href="#overview">
    Skip to report
   </a>
-  <main class="wrap">
-   <header>
-    <p class="kicker">
+<main class="wrap">
+<header>
+<p class="kicker">
      CS180 · Fall 2026 · Project 1
     </p>
-    <h1>
+<h1>
      Color from three
      <br/>
      glass-plate exposures
     </h1>
-    <p class="byline">
+<p class="byline">
      John Joseph ·
      <a href="https://jpothen8.github.io/cs180-project0/">
       Project 0
@@ -33,45 +34,41 @@
      <a href="https://cal-cs180.github.io/fa26/hw/proj1/index.html">
       Assignment
      </a>
-    </p>
-    <nav aria-label="Report sections">
-     <a href="#single">
+</p>
+<nav aria-label="Report sections">
+<a href="#single">
       Single scale
      </a>
-     <a href="#pyramid">
+<a href="#pyramid">
       Image pyramid
      </a>
-     <a href="#results">
+<a href="#results">
       Results
      </a>
-     <a href="#extra">
+<a href="#extra">
       Additional examples
      </a>
-     <a href="#failure">
+<a href="#failure">
       Emir comparison
      </a>
-    </nav>
-   </header>
-   <section id="overview">
-    <div class="description" id="text-introduction">
-     <p>In this project I aim to form the Prokudin-Gorskii glass plate images into a single color image by aligning the captured intensities of the same subject under different colored glass. This wont result in perfect results as there is slight variation between the 3 images, but the goal is to minimize the amount of visual artifacts through strategies below and with trial and error.</p>
-    </div>
-    <p>
-     Offsets are applied to green and red relative to blue, in (x, y) pixels. Positive x moves right; positive y moves down.
-    </p>
-   </section>
-   <section id="single">
-    <h2>
+</nav>
+</header>
+<section id="overview">
+<div class="description" id="text-introduction">
+<p>In this project I aim to form the Prokudin-Gorskii glass plate images into a single color image by aligning the captured intensities of the same subject under different colored glass. This wont result in perfect results as there is slight variation between the 3 images, but the goal is to minimize the amount of visual artifacts through strategies below and with trial and error.</p>
+</div>
+<p>All reconstructions align green to blue and red to green, then add the shifts to place red relative to blue. Offsets are applied to green and red relative to blue, in (x, y) pixels. Positive x moves right; positive y moves down.</p>
+</section>
+<section id="single">
+<h2>
      Single-scale alignment
     </h2>
-    <p class="settings">
-     NCC and L2 · search ±15 pixels · scoring border 15%
-    </p>
-    <div class="description" id="text-single">
-     <p>One, single scaled alignment. Since each scan of the subject contains three grayscale exposures of the same scene under different colored glass panes, the exposures will appear at slightly different positions due to variability in taking the image, and stacking them immediately will cause a lot of visual artifacts in colored outlines or doubled objects. We assume that we can fix these visual artifacts with a translation only, so just moving the entire channel or these images up and down and left and right, and we&#x27;re not doing any rotation. For this project, we&#x27;re using a search from negative 15 to positive 15 pixels, so we can shift each channel by this amount. We also exclude the outer 15% of each channel because the borders can sometimes dominate the comparison without looking at the actual important part, which is the scene.</p>
-    </div>
-    <div class="metrics">
-     <p class="math-key">
+<p class="settings">NCC and L2 · G→B and R→G · search ±15 pixels · scoring border 15%</p>
+<div class="description" id="text-single">
+<p>Since each scan of the subject contains three grayscale exposures of the same scene under different colored glass panes, the exposures will appear at slightly different positions due to variability in taking the image, and stacking them immediately will cause a lot of visual artifacts in colored outlines or doubled objects. We assume that we can fix these visual artifacts with a translation only, so just moving the entire channel or these images up and down and left and right, and we're not doing any rotation. For this project, we're using a search from negative 15 to positive 15 pixels, so we can shift each channel by this amount. We also exclude the outer 15% of each channel because the borders can sometimes dominate the comparison without looking at the actual important part, which is the scene.</p>
+</div>
+<div class="metrics">
+<p class="math-key">
       A and B are the reference and shifted patches over the same interior pixels Ω. μ
       <sub>
        A
@@ -82,26 +79,26 @@
       </sub>
       are their means; N is the number of pixels.
      </p>
-     <div class="formula-grid">
-      <article class="metric-card">
-       <h3>
+<div class="formula-grid">
+<article class="metric-card">
+<h3>
         L2 distance
        </h3>
-       <div aria-label="L2 of A and B equals the square root of the sum over pixels p in Omega of A p minus B p squared." class="equation" role="math">
-        <span>
+<div aria-label="L2 of A and B equals the square root of the sum over pixels p in Omega of A p minus B p squared." class="equation" role="math">
+<span>
          L2(A, B) =
         </span>
-        <span class="sqrt">
-         <span class="radical">
+<span class="sqrt">
+<span class="radical">
           √
          </span>
-         <span class="radicand">
-          <span class="sum">
+<span class="radicand">
+<span class="sum">
            ∑
            <sub>
             p∈Ω
            </sub>
-          </span>
+</span>
           (A
           <sub>
            p
@@ -114,32 +111,32 @@
           <sup>
            2
           </sup>
-         </span>
-        </span>
-       </div>
-       <p class="score-note">
+</span>
+</span>
+</div>
+<p class="score-note">
         Minimize L2. Code score: −L2²/N (maximize).
        </p>
-       <div class="description" id="text-l2">
-     <p>Two, L2 norm. For this strategy, we will take the L2 norm between the images produced by these different color glass panes, and we&#x27;ll try to align the image to minimize the intensity difference across each corresponding pixel between these channels. So essentially, we compare green to blue and red to blue separately. For each possible shift, we calculate the mean squared brightness difference between corresponding pixels in the cropped region and choose the shift with the smallest value. This selects the same alignment as minimizing the L2 norm.</p>
-    </div>
-      </article>
-      <article class="metric-card">
-       <h3>
+<div class="description" id="text-l2">
+<p>For this strategy, we will take the L2 norm between the images produced by these different color glass panes, and we'll try to align the image to minimize the intensity difference across each corresponding pixel between these channels. So essentially, we compare green to blue and red to green separately. For each possible shift, we calculate the mean squared brightness difference between corresponding pixels in the cropped region and choose the shift with the smallest value. This selects the same alignment as minimizing the L2 norm.</p>
+</div>
+</article>
+<article class="metric-card">
+<h3>
         Normalized cross-correlation
        </h3>
-       <div aria-label="NCC of A and B equals the sum of A p minus mean A times B p minus mean B, divided by the product of their mean-centered L2 norms. All sums run over p in Omega." class="equation" role="math">
-        <span>
+<div aria-label="NCC of A and B equals the sum of A p minus mean A times B p minus mean B, divided by the product of their mean-centered L2 norms. All sums run over p in Omega." class="equation" role="math">
+<span>
          NCC(A, B) =
         </span>
-        <span class="fraction">
-         <span class="numerator">
-          <span class="sum">
+<span class="fraction">
+<span class="numerator">
+<span class="sum">
            ∑
            <sub>
             p∈Ω
            </sub>
-          </span>
+</span>
           (A
           <sub>
            p
@@ -158,18 +155,18 @@
           </sub>
           )
          </span>
-         <span class="denominator">
-          <span class="sqrt">
-           <span class="radical">
+<span class="denominator">
+<span class="sqrt">
+<span class="radical">
             √
            </span>
-           <span class="radicand">
-            <span class="sum">
+<span class="radicand">
+<span class="sum">
              ∑
              <sub>
               p∈Ω
              </sub>
-            </span>
+</span>
             (A
             <sub>
              p
@@ -182,19 +179,19 @@
             <sup>
              2
             </sup>
-           </span>
-          </span>
-          <span class="sqrt">
-           <span class="radical">
+</span>
+</span>
+<span class="sqrt">
+<span class="radical">
             √
            </span>
-           <span class="radicand">
-            <span class="sum">
+<span class="radicand">
+<span class="sum">
              ∑
              <sub>
               p∈Ω
              </sub>
-            </span>
+</span>
             (B
             <sub>
              p
@@ -207,736 +204,556 @@
             <sup>
              2
             </sup>
-           </span>
-          </span>
-         </span>
-        </span>
-       </div>
-       <p class="score-note">
+</span>
+</span>
+</span>
+</span>
+</div>
+<p class="score-note">
         Maximize NCC.
        </p>
-       <div class="description" id="text-ncc">
-     <p>Three, NCC. With NCC, the main problem we&#x27;re trying to solve is difference in varying brightness levels across these color channels. So essentially, we&#x27;re trying to say, can we try to find a metric that will make sure that the patterns across the color channels are as similar as possible? The benefit of this is that it doesn&#x27;t penalize two color channels for being different just because of their intensity values. For example, if the red channel is the exact same as the green channel in its particular shift, but all of its intensities are doubled, most likely we would want to keep that shift even though the L2 norm will have a high error for that. So how does NCC work? Essentially, we compare the entire cropped image that we are testing against. We subtract the mean brightness of each cropped image, multiply the corresponding mean-centered values, and add them up. We then divide this sum by the product of the two mean-centered images’ L2 norms. Subtracting the means accounts for overall brightness differences, while dividing by the norms accounts for contrast differences. So for example, let&#x27;s say if we have an array of 10, 20, and 30, and 40, 60, and 80, similar to my example from before, the L2 error will be a lot, but the NCC score will be 1, because after we normalize both these images, we notice that they have the exact same pattern. We start off on a number, and then after demeaning both of these, we get -10, 0, 10, and -20, 0, 20, respectively, which both share the exact same contrast pattern. Because of this, we get the maximum NCC score, which means strong agreement, and because of this normalization, we know that NCC will range from negative 1 to 1.</p>
-    </div>
-      </article>
-     </div>
-    </div>
-    <div class="low-gallery">
-     <article class="low-example">
-      <h3>
+<div class="description" id="text-ncc">
+<p>With NCC, the main problem we're trying to solve is difference in varying brightness levels across these color channels. So essentially, we're trying to say, can we try to find a metric that will make sure that the patterns across the color channels are as similar as possible? The benefit of this is that it doesn't penalize two color channels for being different just because of their intensity values. For example, if the red channel is the exact same as the green channel in its particular shift, but all of its intensities are doubled, most likely we would want to keep that shift even though the L2 norm will have a high error for that. So how does NCC work? Essentially, we compare the entire cropped image that we are testing against. We subtract the mean brightness of each cropped image, multiply the corresponding mean-centered values, and add them up. We then divide this sum by the product of the two mean-centered images’ L2 norms. Subtracting the means accounts for overall brightness differences, while dividing by the norms accounts for contrast differences. So for example, let's say if we have an array of 10, 20, and 30, and 40, 60, and 80, similar to my example from before, the L2 error will be a lot, but the NCC score will be 1, because after we normalize both these images, we notice that they have the exact same pattern. We start off on a number, and then after demeaning both of these, we get -10, 0, 10, and -20, 0, 20, respectively, which both share the exact same contrast pattern. Because of this, we get the maximum NCC score, which means strong agreement, and because of this normalization, we know that NCC will range from negative 1 to 1.</p>
+</div>
+</article>
+</div>
+</div>
+<div class="low-gallery">
+<article class="low-example">
+<h3>
        Cathedral
       </h3>
-      <div class="pair">
-       <figure class="">
-        <a class="image-link" href="images/single-ncc/cathedral.jpg" rel="noopener" target="_blank">
-         <img alt="Cathedral: NCC: G (2, 5); R (3, 12)" height="329" loading="eager" src="images/single-ncc/cathedral.jpg" width="387"/>
-        </a>
-        <figcaption>
-         NCC: G (2, 5); R (3, 12)
-        </figcaption>
-       </figure>
-       <figure class="">
-        <a class="image-link" href="images/single-l2/cathedral.jpg" rel="noopener" target="_blank">
-         <img alt="Cathedral: L2: G (2, 5); R (3, 12)" height="329" loading="eager" src="images/single-l2/cathedral.jpg" width="387"/>
-        </a>
-        <figcaption>
-         L2: G (2, 5); R (3, 12)
-        </figcaption>
-       </figure>
-      </div>
-     </article>
-     <article class="low-example">
-      <h3>
+<div class="pair">
+<figure class="">
+<a class="image-link" href="images/single-ncc-via-green/cathedral.jpg" rel="noopener" target="_blank">
+<img alt="Cathedral: NCC: G (2, 5); R (3, 12)" height="329" loading="eager" src="images/single-ncc-via-green/cathedral.jpg" width="387"/>
+</a>
+<figcaption>NCC: G (2, 5); R (3, 12)</figcaption>
+</figure>
+<figure class="">
+<a class="image-link" href="images/single-l2-via-green/cathedral.jpg" rel="noopener" target="_blank">
+<img alt="Cathedral: L2: G (2, 5); R (3, 12)" height="329" loading="eager" src="images/single-l2-via-green/cathedral.jpg" width="387"/>
+</a>
+<figcaption>L2: G (2, 5); R (3, 12)</figcaption>
+</figure>
+</div>
+</article>
+<article class="low-example">
+<h3>
        Monastery
       </h3>
-      <div class="pair">
-       <figure class="">
-        <a class="image-link" href="images/single-ncc/monastery.jpg" rel="noopener" target="_blank">
-         <img alt="Monastery: NCC: G (2, -3); R (2, 3)" height="335" loading="eager" src="images/single-ncc/monastery.jpg" width="389"/>
-        </a>
-        <figcaption>
-         NCC: G (2, -3); R (2, 3)
-        </figcaption>
-       </figure>
-       <figure class="">
-        <a class="image-link" href="images/single-l2/monastery.jpg" rel="noopener" target="_blank">
-         <img alt="Monastery: L2: G (2, -3); R (2, 3)" height="335" loading="eager" src="images/single-l2/monastery.jpg" width="389"/>
-        </a>
-        <figcaption>
-         L2: G (2, -3); R (2, 3)
-        </figcaption>
-       </figure>
-      </div>
-     </article>
-     <article class="low-example">
-      <h3>
+<div class="pair">
+<figure class="">
+<a class="image-link" href="images/single-ncc-via-green/monastery.jpg" rel="noopener" target="_blank">
+<img alt="Monastery: NCC: G (2, -3); R (3, 3)" height="335" loading="eager" src="images/single-ncc-via-green/monastery.jpg" width="388"/>
+</a>
+<figcaption>NCC: G (2, -3); R (3, 3)</figcaption>
+</figure>
+<figure class="">
+<a class="image-link" href="images/single-l2-via-green/monastery.jpg" rel="noopener" target="_blank">
+<img alt="Monastery: L2: G (2, -3); R (3, 3)" height="335" loading="eager" src="images/single-l2-via-green/monastery.jpg" width="388"/>
+</a>
+<figcaption>L2: G (2, -3); R (3, 3)</figcaption>
+</figure>
+</div>
+</article>
+<article class="low-example">
+<h3>
        Tobolsk
       </h3>
-      <div class="pair">
-       <figure class="">
-        <a class="image-link" href="images/single-ncc/tobolsk.jpg" rel="noopener" target="_blank">
-         <img alt="Tobolsk: NCC: G (3, 3); R (3, 6)" height="335" loading="eager" src="images/single-ncc/tobolsk.jpg" width="393"/>
-        </a>
-        <figcaption>
-         NCC: G (3, 3); R (3, 6)
-        </figcaption>
-       </figure>
-       <figure class="">
-        <a class="image-link" href="images/single-l2/tobolsk.jpg" rel="noopener" target="_blank">
-         <img alt="Tobolsk: L2: G (3, 3); R (3, 6)" height="335" loading="eager" src="images/single-l2/tobolsk.jpg" width="393"/>
-        </a>
-        <figcaption>
-         L2: G (3, 3); R (3, 6)
-        </figcaption>
-       </figure>
-      </div>
-     </article>
-    </div>
-   </section>
-   <section id="pyramid">
-    <h2>
+<div class="pair">
+<figure class="">
+<a class="image-link" href="images/single-ncc-via-green/tobolsk.jpg" rel="noopener" target="_blank">
+<img alt="Tobolsk: NCC: G (3, 3); R (4, 7)" height="334" loading="eager" src="images/single-ncc-via-green/tobolsk.jpg" width="392"/>
+</a>
+<figcaption>NCC: G (3, 3); R (4, 7)</figcaption>
+</figure>
+<figure class="">
+<a class="image-link" href="images/single-l2-via-green/tobolsk.jpg" rel="noopener" target="_blank">
+<img alt="Tobolsk: L2: G (3, 3); R (4, 7)" height="334" loading="eager" src="images/single-l2-via-green/tobolsk.jpg" width="392"/>
+</a>
+<figcaption>L2: G (3, 3); R (4, 7)</figcaption>
+</figure>
+</div>
+</article>
+</div>
+</section>
+<section id="pyramid">
+<h2>
      Multi-scale alignment
     </h2>
-    <p class="settings">
-     Raw-pixel NCC · coarsest side ≤200 pixels · coarse search ±15 · refinement ±2
-    </p>
-    <div class="description" id="text-pyramid">
-     <p>Four: Pyramid. We run into a problem with this earlier two approaches with larger images because of two reasons. First, we need larger searching areas. We need much more than 15 pixels, and this means that this increases the computational complexity of our searching problem. And then on top of that, our images are also bigger, so finding our loss will also be more computationally expensive. So the core idea is that working with these large images is a pretty big hassle. So what we can do is try to downsample these images into a smaller resolution and then find the best displacement for these downsampled images, and then gradually get back to our original quality, so we can find the exact shift needed for this image. In my project, I create smaller images by applying the kernel [1, 2, 1] divided by 4, both horizontally and vertically, and then keeping every second pixel. Because this is a low-pass filter, it will smooth out fine detail before sampling, and without smoothing, these fine patterns can actually turn into visual artifacts called aliasing. I stop downsampling when the longest side is at most 200 pixels, and we do our first alignment with that lowest resolution image with a plus minus 15 pixel search in that pixel space. As we move to each larger level, we double the previously estimated shift and search within plus or minus 2 pixels of that estimate. We double the shift because each image dimension approximately doubles between levels. The main flaw of this algorithm is that an incorrect coarse estimate at the very beginning can lead later searches into the wrong region, and it may never reach the optimal alignment.</p>
-    </div>
-    <figure class="pyramid-diagram">
-     <img alt="Six pyramid levels for Melons. Build from the full-resolution 3770 by 3241 image up to 118 by 102 by blurring and halving each dimension. Search plus or minus 15 pixels at the coarsest level, then double the estimated shift and search plus or minus 2 pixels at each finer level. Repeat separately for green and red relative to blue." height="560" src="diagrams/pyramid.svg" width="1000"/>
-     <figcaption>
+<p class="settings">Raw-pixel NCC · G→B and R→G · coarsest side ≤200 pixels · coarse search ±15 · refinement ±2</p>
+<div class="description" id="text-pyramid">
+<p>We run into a problem with this earlier two approaches with larger images because of two reasons. First, we need larger searching areas. We need much more than 15 pixels, and this means that this increases the computational complexity of our searching problem. And then on top of that, our images are also bigger, so finding our loss will also be more computationally expensive. So the core idea is that working with these large images is a pretty big hassle. So what we can do is try to downsample these images into a smaller resolution and then find the best displacement for these downsampled images, and then gradually get back to our original quality, so we can find the exact shift needed for this image. In my project, I create smaller images by applying the kernel [1, 2, 1] divided by 4, both horizontally and vertically, and then keeping every second pixel. Because this is a low-pass filter, it will smooth out fine detail before sampling, and without smoothing, these fine patterns can actually turn into visual artifacts called aliasing. I stop downsampling when the longest side is at most 200 pixels, and we do our first alignment with that lowest resolution image with a plus minus 15 pixel search in that pixel space. As we move to each larger level, we double the previously estimated shift and search within plus or minus 2 pixels of that estimate. We double the shift because each image dimension approximately doubles between levels. The main flaw of this algorithm is that an incorrect coarse estimate at the very beginning can lead later searches into the wrong region, and it may never reach the optimal alignment.</p>
+</div>
+<figure class="pyramid-diagram">
+<img alt="Six pyramid levels for Melons. Build from the full-resolution 3770 by 3241 image up to 118 by 102 by blurring and halving each dimension. Search plus or minus 15 pixels at the coarsest level, then double the estimated shift and search plus or minus 2 pixels at each finer level. Repeat for green to blue and red to green, then add the shifts to place red relative to blue." height="560" src="diagrams/pyramid.svg" width="1000"/>
+<figcaption>
       Melons pyramid. Level shapes are schematic; labels show actual dimensions.
      </figcaption>
-    </figure>
-    <div class="table-wrap">
-     <table>
-      <caption>
+</figure>
+<div class="table-wrap">
+<table>
+<caption>
        Melons: coarse-to-fine search trace
       </caption>
-      <thead>
-       <tr>
-        <th>
-         Scale
-        </th>
-        <th>
-         Channel size (w × h)
-        </th>
-        <th>
-         Search radius
-        </th>
-        <th>
-         Green (x, y)
-        </th>
-        <th>
-         Red (x, y)
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         1/32
-        </td>
-        <td>
-         118 × 102
-        </td>
-        <td>
-         ±15
-        </td>
-        <td>
-         (0, 3)
-        </td>
-        <td>
-         (1, 6)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         1/16
-        </td>
-        <td>
-         236 × 203
-        </td>
-        <td>
-         ±2
-        </td>
-        <td>
-         (1, 5)
-        </td>
-        <td>
-         (1, 11)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         1/8
-        </td>
-        <td>
-         472 × 406
-        </td>
-        <td>
-         ±2
-        </td>
-        <td>
-         (1, 10)
-        </td>
-        <td>
-         (2, 22)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         1/4
-        </td>
-        <td>
-         943 × 811
-        </td>
-        <td>
-         ±2
-        </td>
-        <td>
-         (3, 21)
-        </td>
-        <td>
-         (3, 45)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         1/2
-        </td>
-        <td>
-         1885 × 1621
-        </td>
-        <td>
-         ±2
-        </td>
-        <td>
-         (5, 41)
-        </td>
-        <td>
-         (7, 89)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         1/1
-        </td>
-        <td>
-         3770 × 3241
-        </td>
-        <td>
-         ±2
-        </td>
-        <td>
-         (10, 81)
-        </td>
-        <td>
-         (14, 178)
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <div class="pair">
-     <figure class="">
-      <a class="image-link" href="images/unaligned/melons.jpg" rel="noopener" target="_blank">
-       <img alt="Melons: Channels stacked without alignment" height="1290" loading="eager" src="images/unaligned/melons.jpg" width="1500"/>
-      </a>
-      <figcaption>
+<thead>
+<tr><th>Scale</th><th>Channel size (w × h)</th><th>Search radius</th><th>Green→blue (x, y)</th><th>Red→green (x, y)</th><th>Red→blue (sum)</th></tr>
+</thead>
+<tbody><tr><td>1/32</td><td>118 × 102</td><td>±15</td><td>(0, 3)</td><td>(0, 3)</td><td>(0, 6)</td></tr><tr><td>1/16</td><td>236 × 203</td><td>±2</td><td>(1, 5)</td><td>(0, 6)</td><td>(1, 11)</td></tr><tr><td>1/8</td><td>472 × 406</td><td>±2</td><td>(1, 10)</td><td>(0, 12)</td><td>(1, 22)</td></tr><tr><td>1/4</td><td>943 × 811</td><td>±2</td><td>(3, 21)</td><td>(1, 24)</td><td>(4, 45)</td></tr><tr><td>1/2</td><td>1885 × 1621</td><td>±2</td><td>(5, 41)</td><td>(2, 48)</td><td>(7, 89)</td></tr><tr><td>1/1</td><td>3770 × 3241</td><td>±2</td><td>(10, 81)</td><td>(3, 96)</td><td>(13, 177)</td></tr></tbody>
+</table>
+</div>
+<div class="pair">
+<figure class="">
+<a class="image-link" href="images/unaligned/melons.jpg" rel="noopener" target="_blank">
+<img alt="Melons: Channels stacked without alignment" height="1290" loading="eager" src="images/unaligned/melons.jpg" width="1500"/>
+</a>
+<figcaption>
        Channels stacked without alignment
       </figcaption>
-     </figure>
-     <figure class="">
-      <a class="image-link" href="images/pyramid/melons.jpg" rel="noopener" target="_blank">
-       <img alt="Melons: After the raw-pixel NCC pyramid" height="1223" loading="eager" src="images/pyramid/melons.jpg" width="1500"/>
-      </a>
-      <figcaption>
+</figure>
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/melons.jpg" rel="noopener" target="_blank">
+<img alt="Melons: After the raw-pixel NCC pyramid" height="1223" loading="eager" src="images/pyramid-via-green/melons.jpg" width="1500"/>
+</a>
+<figcaption>
        After the raw-pixel NCC pyramid
       </figcaption>
-     </figure>
-    </div>
-    <div class="pyramid-results" id="results">
-     <h3>
+</figure>
+</div>
+<div class="pyramid-results" id="results">
+<h3>
       Supplied images
      </h3>
-     <p class="settings">
-      Raw-pixel NCC
-     </p>
-     <div class="description" id="text-results">
-     <p>five results, how to judge the alignment. When looking at the picture, we should look for agreement around the recognizable features, such as building edges, faces, tree trunks, patterns, or anything with a high frequency. Misalignment will produce visible colored fringes or repeated outlines in these areas. The cathedral, monastery, and Tobolsk give the same offsets with both single scale metrics. Moreover, the photographic borders is not an error. It is more important to get the scene aligned, and it is intentional that we are ignoring the borders. However, there may be some artifacts that a translation cannot fix, such as subject movement between the different exposures as seen with a few people in the harvesters image.</p>
-    </div>
-     <div class="gallery" id="gallery">
-      <article class="result-card" id="result-cathedral">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/cathedral.jpg" rel="noopener" target="_blank">
-         <img alt="Cathedral: Cathedral" height="329" loading="eager" src="images/pyramid/cathedral.jpg" width="387"/>
-        </a>
-        <figcaption>
+<p class="settings">Raw-pixel NCC · G→B and R→G for every image</p>
+<div class="description" id="text-results">
+<p>When looking at the reconstructed picture, we should look for agreement around the recognizable features, such as building edges, faces, tree trunks, patterns, or anything with a high frequency. Misalignment will produce visible colored fringes or repeated outlines in these areas. The cathedral, monastery, and Tobolsk give the same offsets with both single scale metrics. Moreover, the photographic borders is not an error. It is more important to get the scene aligned, and it is intentional that we are ignoring the borders. However, there may be some artifacts that a translation cannot fix, such as subject movement between the different exposures as seen with a few people in the harvesters image.</p>
+</div>
+<div class="gallery" id="gallery">
+<article class="result-card" id="result-cathedral">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/cathedral.jpg" rel="noopener" target="_blank">
+<img alt="Cathedral: Cathedral" height="329" loading="eager" src="images/pyramid-via-green/cathedral.jpg" width="387"/>
+</a>
+<figcaption>
          Cathedral
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (2, 5)   R (3, 12)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (2, 5)   R (3, 12)</p>
+<p class="meta">
         390 × 341 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-church">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/church.jpg" rel="noopener" target="_blank">
-         <img alt="Church: Church" height="1301" loading="eager" src="images/pyramid/church.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-church">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/church.jpg" rel="noopener" target="_blank">
+<img alt="Church: Church" height="1301" loading="eager" src="images/pyramid-via-green/church.jpg" width="1500"/>
+</a>
+<figcaption>
          Church
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (4, 25)   R (-4, 58)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (4, 25)   R (-4, 58)</p>
+<p class="meta">
         3,634 × 3,202 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-emir">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
-         <img alt="Emir: Emir" height="1318" loading="eager" src="images/pyramid/emir.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-emir">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/emir.jpg" rel="noopener" target="_blank">
+<img alt="Emir: Emir" height="1271" loading="eager" src="images/pyramid-via-green/emir.jpg" width="1500"/>
+</a>
+<figcaption>
          Emir
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (24, 49)   R (-482, 400)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (24, 49)   R (41, 106)</p>
+<p class="meta">
         3,702 × 3,209 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-harvesters">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/harvesters.jpg" rel="noopener" target="_blank">
-         <img alt="Harvesters: Harvesters" height="1266" loading="eager" src="images/pyramid/harvesters.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-harvesters">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/harvesters.jpg" rel="noopener" target="_blank">
+<img alt="Harvesters: Harvesters" height="1266" loading="eager" src="images/pyramid-via-green/harvesters.jpg" width="1500"/>
+</a>
+<figcaption>
          Harvesters
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (17, 60)   R (14, 124)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (17, 60)   R (14, 125)</p>
+<p class="meta">
         3,683 × 3,218 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-icon">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/icon.jpg" rel="noopener" target="_blank">
-         <img alt="Icon: Icon" height="1273" loading="eager" src="images/pyramid/icon.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-icon">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/icon.jpg" rel="noopener" target="_blank">
+<img alt="Icon: Icon" height="1273" loading="eager" src="images/pyramid-via-green/icon.jpg" width="1500"/>
+</a>
+<figcaption>
          Icon
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (17, 41)   R (23, 89)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (17, 41)   R (22, 89)</p>
+<p class="meta">
         3,741 × 3,244 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-ilemselga">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/ilemselga.jpg" rel="noopener" target="_blank">
-         <img alt="Ilemselga: Ilemselga" height="1243" loading="eager" src="images/pyramid/ilemselga.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-ilemselga">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/ilemselga.jpg" rel="noopener" target="_blank">
+<img alt="Ilemselga: Ilemselga" height="1243" loading="eager" src="images/pyramid-via-green/ilemselga.jpg" width="1500"/>
+</a>
+<figcaption>
          Ilemselga
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (7, 40)   R (11, 130)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (7, 40)   R (11, 131)</p>
+<p class="meta">
         3,800 × 3,270 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-melons">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/melons.jpg" rel="noopener" target="_blank">
-         <img alt="Melons: Melons" height="1223" loading="eager" src="images/pyramid/melons.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-melons">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/melons.jpg" rel="noopener" target="_blank">
+<img alt="Melons: Melons" height="1223" loading="eager" src="images/pyramid-via-green/melons.jpg" width="1500"/>
+</a>
+<figcaption>
          Melons
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (10, 81)   R (14, 178)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (10, 81)   R (13, 177)</p>
+<p class="meta">
         3,770 × 3,241 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-monastery">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/monastery.jpg" rel="noopener" target="_blank">
-         <img alt="Monastery: Monastery" height="335" loading="eager" src="images/pyramid/monastery.jpg" width="389"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-monastery">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/monastery.jpg" rel="noopener" target="_blank">
+<img alt="Monastery: Monastery" height="335" loading="eager" src="images/pyramid-via-green/monastery.jpg" width="388"/>
+</a>
+<figcaption>
          Monastery
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (2, -3)   R (2, 3)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (2, -3)   R (3, 3)</p>
+<p class="meta">
         391 × 341 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-religous_painting">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/religous_painting.jpg" rel="noopener" target="_blank">
-         <img alt="Religious painting: Religious painting" height="1255" loading="eager" src="images/pyramid/religous_painting.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-religous_painting">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/religous_painting.jpg" rel="noopener" target="_blank">
+<img alt="Religious painting: Religious painting" height="1255" loading="eager" src="images/pyramid-via-green/religous_painting.jpg" width="1500"/>
+</a>
+<figcaption>
          Religious painting
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (3, 28)   R (7, 68)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (3, 28)   R (7, 69)</p>
+<p class="meta">
         3,742 × 3,193 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-self_portrait">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/self_portrait.jpg" rel="noopener" target="_blank">
-         <img alt="Self portrait: Self portrait" height="1223" loading="eager" src="images/pyramid/self_portrait.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-self_portrait">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/self_portrait.jpg" rel="noopener" target="_blank">
+<img alt="Self portrait: Self portrait" height="1222" loading="eager" src="images/pyramid-via-green/self_portrait.jpg" width="1500"/>
+</a>
+<figcaption>
          Self portrait
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (29, 79)   R (37, 176)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (29, 79)   R (37, 177)</p>
+<p class="meta">
         3,810 × 3,251 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-siren">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/siren.jpg" rel="noopener" target="_blank">
-         <img alt="Siren: Siren" height="1248" loading="eager" src="images/pyramid/siren.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-siren">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/siren.jpg" rel="noopener" target="_blank">
+<img alt="Siren: Siren" height="1248" loading="eager" src="images/pyramid-via-green/siren.jpg" width="1500"/>
+</a>
+<figcaption>
          Siren
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (-6, 49)   R (-25, 96)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (-6, 49)   R (-25, 96)</p>
+<p class="meta">
         3,817 × 3,250 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-three_generations">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/three_generations.jpg" rel="noopener" target="_blank">
-         <img alt="Three generations: Three generations" height="1256" loading="eager" src="images/pyramid/three_generations.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-three_generations">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/three_generations.jpg" rel="noopener" target="_blank">
+<img alt="Three generations: Three generations" height="1256" loading="eager" src="images/pyramid-via-green/three_generations.jpg" width="1500"/>
+</a>
+<figcaption>
          Three generations
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (14, 52)   R (11, 111)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (14, 52)   R (11, 111)</p>
+<p class="meta">
         3,714 × 3,209 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-tobolsk">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/tobolsk.jpg" rel="noopener" target="_blank">
-         <img alt="Tobolsk: Tobolsk" height="335" loading="eager" src="images/pyramid/tobolsk.jpg" width="393"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-tobolsk">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/tobolsk.jpg" rel="noopener" target="_blank">
+<img alt="Tobolsk: Tobolsk" height="334" loading="eager" src="images/pyramid-via-green/tobolsk.jpg" width="392"/>
+</a>
+<figcaption>
          Tobolsk
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (3, 3)   R (3, 6)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (3, 3)   R (4, 7)</p>
+<p class="meta">
         396 × 341 pixels per channel
        </p>
-      </article>
-      <article class="result-card" id="result-wharf">
-       <figure class="">
-        <a class="image-link" href="images/pyramid/wharf.jpg" rel="noopener" target="_blank">
-         <img alt="Wharf: Wharf" height="1266" loading="eager" src="images/pyramid/wharf.jpg" width="1500"/>
-        </a>
-        <figcaption>
+</article>
+<article class="result-card" id="result-wharf">
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/wharf.jpg" rel="noopener" target="_blank">
+<img alt="Wharf: Wharf" height="1266" loading="eager" src="images/pyramid-via-green/wharf.jpg" width="1500"/>
+</a>
+<figcaption>
          Wharf
         </figcaption>
-       </figure>
-       <p class="offset">
-        G (-7, 15)   R (-16, 82)
-       </p>
-       <p class="meta">
+</figure>
+<p class="offset">G (-7, 15)   R (-16, 82)</p>
+<p class="meta">
         3,761 × 3,244 pixels per channel
        </p>
-      </article>
-     </div>
-    </div>
-   </section>
-   <section id="extra">
-    <h2>
+</article>
+</div>
+</div>
+</section>
+<section id="extra">
+<h2>
      Additional examples
     </h2>
-    <p class="settings">
-     Original Library of Congress TIFFs · raw-pixel NCC
-    </p>
-    <div class="description" id="text-extra-intro">
-     <p>Six additional examples, what different scenes reveal. These three images from the Library of Congress show how the algorithms work in different types of scenes with different challenges. The mosque provides an architectural structure with an identifiable boundary, and the river scene also includes broad areas with less textures, but there is a clear boundary between the water and the landscape. But the locomotive example seems to be the hardest image to align visually because of all the repeated lines and outlines in this image. This may be why the locomotive example looks slightly less tuned than the Suna River and the mosque example, but this is an inherent challenge with the image itself but overall, it does seem to have done a pretty good job.</p>
-    </div>
-    <article class="extra-example">
-     <h3>
+<p class="settings">Original Library of Congress TIFFs · raw-pixel NCC · G→B and R→G</p>
+<div class="description" id="text-extra-intro">
+<p>These three images from the Library of Congress show how the algorithms work in different types of scenes with different challenges. The mosque provides an architectural structure with an identifiable boundary, and the river scene also includes broad areas with less textures, but there is a clear boundary between the water and the landscape. But the locomotive example seems to be the hardest image to align visually because of all the repeated lines and outlines in this image. This may be why the locomotive example looks slightly less tuned than the Suna River and the mosque example, but this is an inherent challenge with the image itself but overall, it does seem to have done a pretty good job.</p>
+</div>
+<article class="extra-example">
+<h3>
       Yusuf Hamadani mosque
      </h3>
-     <p class="source">
-      <a href="https://www.loc.gov/item/2018681248/">
+<p class="source">
+<a href="https://www.loc.gov/item/2018681248/">
        Yusuf Hamadani mosque and mausoleum, ancient Merv, Turkmenistan
       </a>
       ·
       <a href="https://tile.loc.gov/storage-services/master/pnp/prok/00000/00082u.tif">
        Original glass-plate TIFF
       </a>
-     </p>
-     <figure class="">
-      <a class="image-link" href="images/pyramid/mosque.jpg" rel="noopener" target="_blank">
-       <img alt="Yusuf Hamadani mosque: Raw-pixel NCC reconstruction" height="1252" loading="eager" src="images/pyramid/mosque.jpg" width="1500"/>
-      </a>
-      <figcaption>
+</p>
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/mosque.jpg" rel="noopener" target="_blank">
+<img alt="Yusuf Hamadani mosque: Raw-pixel NCC reconstruction" height="1252" loading="eager" src="images/pyramid-via-green/mosque.jpg" width="1500"/>
+</a>
+<figcaption>
        Raw-pixel NCC reconstruction
       </figcaption>
-     </figure>
-     <p class="offset">
-      G (5, 32)  
-          R (8, 79)
-     </p>
-     <div class="description" id="text-mosque">
-      <!-- Write your Yusuf Hamadani mosque observations here. -->
-     </div>
-    </article>
-    <article class="extra-example">
-     <h3>
+</figure>
+<p class="offset">G (5, 32)   R (7, 79)</p>
+<div class="description" id="text-mosque">
+<!-- Write your Yusuf Hamadani mosque observations here. -->
+</div>
+</article>
+<article class="extra-example">
+<h3>
       Suna River
      </h3>
-     <p class="source">
-      <a href="https://www.loc.gov/item/2018679170/">
+<p class="source">
+<a href="https://www.loc.gov/item/2018679170/">
        Suna River at the village of Maloe Voronovo
       </a>
       ·
       <a href="https://tile.loc.gov/storage-services/master/pnp/prok/00100/00167u.tif">
        Original glass-plate TIFF
       </a>
-     </p>
-     <figure class="">
-      <a class="image-link" href="images/pyramid/river.jpg" rel="noopener" target="_blank">
-       <img alt="Suna River: Raw-pixel NCC reconstruction" height="1258" loading="eager" src="images/pyramid/river.jpg" width="1500"/>
-      </a>
-      <figcaption>
+</p>
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/river.jpg" rel="noopener" target="_blank">
+<img alt="Suna River: Raw-pixel NCC reconstruction" height="1257" loading="eager" src="images/pyramid-via-green/river.jpg" width="1500"/>
+</a>
+<figcaption>
        Raw-pixel NCC reconstruction
       </figcaption>
-     </figure>
-     <p class="offset">
-      G (-5, 25)  
-          R (-11, 102)
-     </p>
-     <div class="description" id="text-river">
-      <!-- Write your Suna River observations here. -->
-     </div>
-    </article>
-    <article class="extra-example">
-     <h3>
+</figure>
+<p class="offset">G (-5, 25)   R (-10, 102)</p>
+<div class="description" id="text-river">
+<!-- Write your Suna River observations here. -->
+</div>
+</article>
+<article class="extra-example">
+<h3>
       Locomotive
      </h3>
-     <p class="source">
-      <a href="https://www.loc.gov/item/2018679065/">
+<p class="source">
+<a href="https://www.loc.gov/item/2018679065/">
        Locomotive and coal car at a railroad yard
       </a>
       ·
       <a href="https://tile.loc.gov/storage-services/master/pnp/prok/00100/00190u.tif">
        Original glass-plate TIFF
       </a>
-     </p>
-     <figure class="">
-      <a class="image-link" href="images/pyramid/locomotive.jpg" rel="noopener" target="_blank">
-       <img alt="Locomotive: Raw-pixel NCC reconstruction" height="1227" loading="eager" src="images/pyramid/locomotive.jpg" width="1500"/>
-      </a>
-      <figcaption>
+</p>
+<figure class="">
+<a class="image-link" href="images/pyramid-via-green/locomotive.jpg" rel="noopener" target="_blank">
+<img alt="Locomotive: Raw-pixel NCC reconstruction" height="1227" loading="eager" src="images/pyramid-via-green/locomotive.jpg" width="1500"/>
+</a>
+<figcaption>
        Raw-pixel NCC reconstruction
       </figcaption>
-     </figure>
-     <p class="offset">
-      G (31, 38)  
-          R (-165, 294)
-     </p>
-     <div class="description" id="text-locomotive">
-      <!-- Write your Locomotive observations here. -->
-     </div>
-    </article>
-   </section>
-   <section id="failure">
-    <h2>
-     Emir: comparing alignment strategies
-    </h2>
-    <figure class="raw-channels">
-     <a class="image-link" href="images/emir-raw-channels.png" rel="noopener" target="_blank">
-      <img alt="Original unaligned Emir exposures: blue on the left, green in the middle, and red on the right, displayed using the same brightness scaling." height="598" src="images/emir-raw-channels.png" width="1880"/>
-     </a>
-    </figure>
-    <p class="settings">
+</figure>
+<p class="offset">G (31, 38)   R (-165, 294)</p>
+<div class="description" id="text-locomotive">
+<!-- Write your Locomotive observations here. -->
+</div>
+</article>
+</section>
+<section id="failure">
+<h2>Emir: why I used red to green</h2>
+<figure class="raw-channels">
+<a class="image-link" href="images/emir-raw-channels.png" rel="noopener" target="_blank">
+<img alt="Original unaligned Emir exposures: blue on the left, green in the middle, and red on the right, displayed using the same brightness scaling." height="598" src="images/emir-raw-channels.png" width="1880"/>
+</a>
+</figure>
+<p class="settings">
      Red via green: R→B = R→G + G→B. All four examples use a 15% scoring border and a coarsest side of 200 px.
     </p>
-    <div class="description" id="text-emir">
-     <p>Seven Emir. In all of the above images, with the same settings for NCC reconstruction, we see here that the Emir robe image shows a pretty big limitation of this brightness-based matching. The color filters can record the same garment or background regions with very different intensities, and since Emir is wearing a dark blue robe with many different colored features on it, it is very hard for the intensities between the red, green, and blue channels to agree with each other, even in the correct alignment. So, in order to play around with this problem a little bit more, I tried different parameters for the alignment. So, for example, I explored both the NCC and L2 metric, borders of 10, 15, and 25%, and the pyramid stopping sizes of 200, 400, and 800. However, the best improvement came from using green as the intermediate reference for aligning each color. If we look at each channel, the differences in the robe is kind of intermediate in the green exposure channel, as it is very dark in the red exposure and very bright or intense in the blue exposure. So, before I was comparing the red with the blue channel and the green to the blue channel, but instead of that, I compare red to green and green to blue. So this red to blue difference is computed by adding these two deltas: red to green and green to blue. This heavily increased the accuracy and alignment in the image, likely because of this fact that green is an intermediate intensity in the robe, which is the main feature that will throw off the traditional alignment in this image. And since both NCC and L2 both improved with this change, it suggests that the reference choice of color was actually pretty important here.</p>
-    </div>
-    <div class="comparison-grid">
-     <figure>
-      <a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
-       <img alt="Emir: NCC · red to blue" height="1318" src="images/pyramid/emir.jpg" width="1500"/>
-      </a>
-      <figcaption>
-       NCC · red to blue
-       <br/>
+<div class="description" id="text-emir">
+<p>Emir is the main reason I used green as the intermediate reference for all the reconstructions above. When I compared red to blue directly, the Emir robe image showed a pretty big limitation of this brightness-based matching. The color filters can record the same garment or background regions with very different intensities, and since Emir is wearing a dark blue robe with many different colored features on it, it is very hard for the intensities between the red, green, and blue channels to agree with each other, even in the correct alignment. So, in order to play around with this problem a little bit more, I tried different parameters for the alignment. So, for example, I explored both the NCC and L2 metric, borders of 10, 15, and 25%, and the pyramid stopping sizes of 200, 400, and 800. However, the best improvement came from using green as the intermediate reference for aligning each color. If we look at each channel, the differences in the robe is kind of intermediate in the green exposure channel, as it is very dark in the red exposure and very bright or intense in the blue exposure. So, before I was comparing the red with the blue channel and the green to the blue channel, but instead of that, I compare red to green and green to blue. So this red to blue difference is computed by adding these two deltas: red to green and green to blue. This heavily increased the accuracy and alignment in the image, likely because of this fact that green is an intermediate intensity in the robe, which is the main feature that will throw off the traditional alignment in this image. And since both NCC and L2 both improved with this change, it suggests that the reference choice of color was actually pretty important here. I then used the same green-to-blue and red-to-green approach for all the images, with the same search settings.</p>
+</div>
+<div class="comparison-grid">
+<figure>
+<a class="image-link" href="images/pyramid/emir.jpg" rel="noopener" target="_blank">
+<img alt="Emir: NCC · red to blue" height="1318" src="images/pyramid/emir.jpg" width="1500"/>
+</a>
+<figcaption>Traditional approach: NCC · red to blue
+<br/>
        G (24, 49)   R (-482, 400)
       </figcaption>
-     </figure>
-     <figure>
-      <a class="image-link" href="images/pyramid-l2/emir.jpg" rel="noopener" target="_blank">
-       <img alt="Emir: L2 · red to blue" height="1289" src="images/pyramid-l2/emir.jpg" width="1500"/>
-      </a>
-      <figcaption>
-       L2 · red to blue
-       <br/>
+</figure>
+<figure>
+<a class="image-link" href="images/pyramid-l2/emir.jpg" rel="noopener" target="_blank">
+<img alt="Emir: L2 · red to blue" height="1289" src="images/pyramid-l2/emir.jpg" width="1500"/>
+</a>
+<figcaption>Traditional approach: L2 · red to blue
+<br/>
        G (24, 49)   R (44, 66)
       </figcaption>
-     </figure>
-     <figure>
-      <a class="image-link" href="images/pyramid-via-green/emir.jpg" rel="noopener" target="_blank">
-       <img alt="Emir: NCC · red to green" height="1271" src="images/pyramid-via-green/emir.jpg" width="1500"/>
-      </a>
-      <figcaption>
-       NCC · red to green
-       <br/>
+</figure>
+<figure>
+<a class="image-link" href="images/pyramid-via-green/emir.jpg" rel="noopener" target="_blank">
+<img alt="Emir: NCC · red to green" height="1271" src="images/pyramid-via-green/emir.jpg" width="1500"/>
+</a>
+<figcaption>Chosen approach: NCC · red to green
+<br/>
        G (24, 49)   R (41, 106)
       </figcaption>
-     </figure>
-     <figure>
-      <a class="image-link" href="images/pyramid-l2-via-green/emir.jpg" rel="noopener" target="_blank">
-       <img alt="Emir: L2 · red to green" height="1271" src="images/pyramid-l2-via-green/emir.jpg" width="1500"/>
-      </a>
-      <figcaption>
-       L2 · red to green
-       <br/>
+</figure>
+<figure>
+<a class="image-link" href="images/pyramid-l2-via-green/emir.jpg" rel="noopener" target="_blank">
+<img alt="Emir: L2 · red to green" height="1271" src="images/pyramid-l2-via-green/emir.jpg" width="1500"/>
+</a>
+<figcaption>Chosen approach: L2 · red to green
+<br/>
        G (24, 49)   R (41, 106)
       </figcaption>
-     </figure>
-    </div>
-    <div class="table-wrap">
-     <table>
-      <caption>
+</figure>
+</div>
+<div class="table-wrap">
+<table>
+<caption>
        Applied offsets (x, y), relative to blue
       </caption>
-      <thead>
-       <tr>
-        <th>
+<thead>
+<tr>
+<th>
          Metric
         </th>
-        <th>
+<th>
          Red reference
         </th>
-        <th>
+<th>
          Green
         </th>
-        <th>
+<th>
          Red
         </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
          NCC
         </th>
-        <td>
+<td>
          blue
         </td>
-        <td>
+<td>
          (24, 49)
         </td>
-        <td>
+<td>
          (-482, 400)
         </td>
-       </tr>
-       <tr>
-        <th>
+</tr>
+<tr>
+<th>
          L2
         </th>
-        <td>
+<td>
          blue
         </td>
-        <td>
+<td>
          (24, 49)
         </td>
-        <td>
+<td>
          (44, 66)
         </td>
-       </tr>
-       <tr>
-        <th>
+</tr>
+<tr>
+<th>
          NCC
         </th>
-        <td>
+<td>
          green
         </td>
-        <td>
+<td>
          (24, 49)
         </td>
-        <td>
+<td>
          (41, 106)
         </td>
-       </tr>
-       <tr>
-        <th>
+</tr>
+<tr>
+<th>
          L2
         </th>
-        <td>
+<td>
          green
         </td>
-        <td>
+<td>
          (24, 49)
         </td>
-        <td>
+<td>
          (41, 106)
         </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-   </section>
-   <footer>
-    <p>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<footer>
+<p>
      John Joseph · Fall 2026
     </p>
-    <p>
+<p>
      Photographs: Prokudin-Gorskii collection, Library of Congress.
      <a href="https://drive.google.com/file/d/1gJT5EcsANLwNVEhswTKQ3sR81wTEF0tu/view">
       Course scans
@@ -945,13 +762,13 @@
      <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.py">
       Python starter
      </a>
-    </p>
-    <p>
-     <a href="https://jpothen8.github.io/cs180-project1/">
+</p>
+<p>
+<a href="https://jpothen8.github.io/cs180-project1/">
       jpothen8.github.io/cs180-project1
      </a>
-    </p>
-   </footer>
-  </main>
- </body>
+</p>
+</footer>
+</main>
+</body>
 </html>
